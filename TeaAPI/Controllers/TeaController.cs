@@ -1,5 +1,9 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace TeaAPI.Controllers
 {
@@ -7,15 +11,17 @@ namespace TeaAPI.Controllers
     [Route("[controller]")]
     public class TeaController : ControllerBase
     {
-        private static readonly string[] Teas = {
-            "Tea 1", "Tea 2", "Tea 3", "Tea 4", "Tea 5", "Tea 6",
+        private static readonly string[] Teas = new[]
+        {
+            "Green", "Peppermint", "Earl Grey", "English Breakfast", "Camomile"
         };
 
+    
         [HttpGet]
         public ActionResult Get()
         {
             var rng = new Random();
-
+            
             return Ok(Teas[rng.Next(Teas.Length)]);
         }
     }
